@@ -31,7 +31,7 @@ while getopts "chip" opt; do
             echo "A fast, low overhead alternative to 'uniq' that does not require"
             echo "pre-sorting the input beforehand. The input lines are deduped and"
             echo "buffered in memory from stdin. The results are emitted unordered"
-            echo "to stdout unless ."
+            echo "to stdout."
             echo ""
             echo "OPTIONS"
             echo ""

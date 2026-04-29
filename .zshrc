@@ -16,6 +16,7 @@ fpath=(
 typeset -U path # dedupe
 path=(
    ~/bin
+   ~/.local/bin
    $GOPATH/bin
    /usr/local/sbin
    /usr/local/bin
@@ -42,6 +43,9 @@ bindkey -e # Emacs key bindings
 
 source ~/.zshrc.hashicorp
 source ~/.zshrc.kubernetes
+source ~/.zshrc.rust
+source ~/.zshrc.bun
+[[ "$OSTYPE" == darwin* ]] && source ~/.zshrc.macos
 
 # configure prompt
 autoload -Uz vcs_info

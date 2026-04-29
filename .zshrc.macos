@@ -1,0 +1,15 @@
+# Homebrew shellenv (Apple Silicon).
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# openjdk via Homebrew.
+[ -d /opt/homebrew/opt/openjdk@17 ] && {
+   export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+   export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+}
+
+# openssl via Homebrew.
+[ -d /opt/homebrew/opt/openssl@3 ] && {
+   export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+   export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+   export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+}

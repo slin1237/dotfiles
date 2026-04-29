@@ -1,0 +1,15 @@
+# Rust / Cargo.
+[ -f "$HOME/.cargo/env" ] && {
+   . "$HOME/.cargo/env"
+   export RUST_BACKTRACE=full
+   export CARGO_TARGET_DIR="$HOME/.cargo/target"
+   export CARGO_INCREMENTAL=0
+}
+
+# sccache: shared compilation cache for Rust.
+command -v sccache >/dev/null 2>&1 && {
+   export RUSTC_WRAPPER="$(command -v sccache)"
+   export SCCACHE_CACHE_SIZE="10G"
+   export SCCACHE_STATS="1"
+   pgrep -q sccache || sccache --start-server &>/dev/null
+}

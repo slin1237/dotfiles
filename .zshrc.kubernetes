@@ -20,6 +20,17 @@ command -v kubectl >/dev/null 2>&1 && {
    source <(kubectl completion zsh)
 }
 
+# kubecm: interactive kubectl context manager
+command -v kubecm >/dev/null 2>&1 && {
+   alias kc='kubecm'
+   [ -f ~/.kubecm ] && source ~/.kubecm
+}
+
+# krew: kubectl plugin manager
+[ -d "${KREW_ROOT:-$HOME/.krew}/bin" ] && {
+   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+}
+
 # Create prompt with current kubectl context/namespace.
 precmd_kubeps1() {
    KUBEPS1=$(kubectl config get-contexts 2>/dev/null | awk '

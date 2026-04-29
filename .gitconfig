@@ -1,35 +1,55 @@
 [alias]
-   # Replace HEAD with a new commit that includes both existing and currently staged changes.
-   amend = commit --amend
+   # Short forms.
+   aa  = add -A
+   br  = branch
+   ca  = commit -a
+   ci  = commit
+   cl  = clone
+   cm  = commit -m
+   co  = checkout
+   cob = checkout -b
+   cp  = cherry-pick
+   d   = diff
+   df  = diff
+   dc  = diff --cached
+   pl  = pull
+   ps  = push
+   rbi = rebase -i
+   rv  = remote -v
+   st  = status
+   gl  = config --global -l
 
-   # Update commit message with a suitable rebase --autosquash prefix.
-   fixup  = commit --fixup
-   squash = commit --squash
-
-   # Pretty-print log with DAG (see: https://coderwall.com/p/euwpig/a-better-git-log)
-   lg = log --all --color --date-order --graph --format='%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)(%cr) %C(bold blue)%aN <%aE>%C(reset)'
-
-   # Show pending changes
+   # Inspect history.
+   ll       = log --oneline
+   last     = log -1 HEAD
+   lg       = log --oneline --graph --decorate --all
    staged   = diff --cached
    unstaged = diff
    pending  = diff HEAD
-
-   # Search for work to do
-   todo = grep -i -e '\\bFIXME\\b' -e '\\bNOTE\\b' -e '\\bTODO\\b' -e '\\bXXX\\b'
-
-   # Undo the last commit and keep changes in working directory
-   undo = reset --mixed HEAD~1
-
-   # Show branch merge status
    merged   = branch --merged
    unmerged = branch --no-merged
+
+   # Search history for content.
+   se   = !git rev-list --all | xargs git grep -F
+   todo = grep -i -e '\\bFIXME\\b' -e '\\bNOTE\\b' -e '\\bTODO\\b' -e '\\bXXX\\b'
+
+   # Modify history.
+   amend   = commit --amend --no-edit
+   fixup   = commit --fixup
+   squash  = rebase -i HEAD~2
+   undo    = reset --soft HEAD~1
+   unstage = reset HEAD --
 [commit]
    verbose = true
+[core]
+   pager = diff-so-fancy | less --tabs=4 -RF
 [diff]
    algorithm = histogram
    renameLimit = 10000
 [init]
    templatedir = ~/.git-template
+[interactive]
+   diffFilter = diff-so-fancy --patch
 [log]
    follow = true
 [merge]
@@ -40,5 +60,7 @@
    autosquash = true
    autostash = true
 [user]
-   email = trevor.pounds@gmail.com
-   name = Trevor Pounds
+   name = Simo Lin
+   email = 25425177+slin1237@users.noreply.github.com
+[includeIf "gitdir:~/opensource/"]
+   path = ~/.gitconfig-opensource
